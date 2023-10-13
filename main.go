@@ -12,8 +12,8 @@ func init() {
 	}
 }
 func main() {
-	s := NewApiServer()
-	if err := s.Run(); err != nil {
+	server := NewApiServer()
+	if err := server.Run(); err != nil {
 		log.Fatalln("Error : Failed To Start Application !")
 	}
 

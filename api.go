@@ -2,22 +2,13 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
 
 	"github.com/gorilla/mux"
 )
-
-type APIServer struct {
-	Version string
-	Env     string
-	Port    string
-}
-
-type APIError struct {
-	Error string
-}
 
 func NewApiServer() *APIServer {
 	return &APIServer{
@@ -93,13 +84,7 @@ func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error 
 			return err
 		}
 	}
-	// if r.Method == "PUT" {
-
-	// }
-	// if r.Method == "PATCH" {
-
-	// }
-	return nil
+	return fmt.Errorf("Request Method Not Allowed !")
 }
 
 func (s *APIServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
@@ -113,7 +98,3 @@ func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) 
 func (s *APIServer) handleDeleteAccount(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
-
-// func (s *APIServer) handleTransferMoney(w http.ResponseWriter, r *http.Request) error {
-// 	return nil
-// }
