@@ -28,12 +28,13 @@ type (
 )
 
 type BankAccount struct {
-	ID            uuid.UUID `json:"account_id"`
-	AccountNumber string    `json:"account_number"`
-	Balance       string    `json:"account_balance"`
-	User          User      `json:"user_details"`
-	CreatedAt     time.Time `json:"created_at"`
-	UpdatedAt     time.Time `json:"updated_at"`
+	ID            uuid.UUID     `json:"account_id"`
+	AccountNumber string        `json:"account_number"`
+	Balance       string        `json:"account_balance"`
+	User          User          `json:"user_details"`
+	Transactions  []Transaction `json:"transactions"`
+	CreatedAt     time.Time     `json:"created_at"`
+	UpdatedAt     time.Time     `json:"updated_at"`
 }
 
 func NewBankAccount(u *User) *BankAccount {
