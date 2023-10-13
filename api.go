@@ -65,30 +65,22 @@ func (s *APIServer) HealthCheck(w http.ResponseWriter, r *http.Request) {
 
 func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error {
 	if r.Method == "GET" {
-		err := s.handleGetAccount(w, r)
-		if err != nil {
-			return err
-		}
+		return s.handleGetAccount(w, r)
 	}
 
 	if r.Method == "POST" {
-		err := s.handleCreateAccount(w, r)
-		if err != nil {
-			return err
-		}
-	}
+		return s.handleCreateAccount(w, r)
 
-	if r.Method == "DELETE" {
-		err := s.handleDeleteAccount(w, r)
-		if err != nil {
-			return err
-		}
 	}
-	return fmt.Errorf("Request Method Not Allowed !")
+	if r.Method == "DELETE" {
+		return s.handleDeleteAccount(w, r)
+	}
+	return fmt.Errorf("request method not allowed : %s ", r.Method)
 }
 
 func (s *APIServer) handleGetAccount(w http.ResponseWriter, r *http.Request) error {
-	return nil
+	account := NewAccount("vikash", "parashar")
+	return writeJSON(w, http.StatusOK, account)
 }
 
 func (s *APIServer) handleCreateAccount(w http.ResponseWriter, r *http.Request) error {
