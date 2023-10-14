@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"math/rand"
 )
 
@@ -10,19 +9,6 @@ var (
 	Debit   string = "Debit"
 	Admin   string = "Admin"
 	General string = "user"
-)
-
-type (
-	APIServer struct {
-		Version string
-		Env     string
-		Port    string
-		DB      *sql.DB
-	}
-
-	APIError struct {
-		Error string
-	}
 )
 
 type Account struct {
