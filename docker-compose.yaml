@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  app:
+    build: .  # This tells Docker Compose to build the image using the current directory (where your Dockerfile is located)
+    ports:
+      - "8080:8080"  # Map the application's port inside the container to the host
+
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_DB=gobank
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin

@@ -3,5 +3,8 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . ./
-CMD [ "go build -o ./go-bank","./go-bank" ]
+RUN go build -o ./go-bank
+
+# Use a simple CMD to run the application
+CMD ["./go-bank"]
 EXPOSE 8080

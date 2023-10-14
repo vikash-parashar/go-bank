@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	env "github.com/joho/godotenv"
@@ -12,9 +13,17 @@ func init() {
 	}
 }
 func main() {
-	server := NewApiServer()
+	store, err := NewPostgresStore("")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	if err = store.init(); err != nil {
+		log.Fatalln(err)
+	}
+	server := NewApiServer(store)
 	if err := server.Run(); err != nil {
 		log.Fatalln("Error : Failed To Start Application !")
 	}
+	fmt.Println("%+v\n", store)
 
 }
